@@ -8,22 +8,12 @@ class Solution:
                 self.hash_map[nums[i]] += 1
             else:
                 self.hash_map[nums[i]] = 1
-        
-        self.max_hash = self.hash_map[nums[0]]
-        print(len(self.hash_map))
-        print(self.hash_map)
-        print(self.max_hash)
-        for i in range(1, len(self.hash_map)):
-            print(self.hash_map[nums[i]])
-            if self.hash_map[nums[i]] > self.max_hash:
-                self.max_hash = self.hash_map[nums[i]]
-            elif self.hash_map[nums[i]] == self.max_hash:
-                return min(self.hash_map[i], self.max_hash)
-        
-        return self.max_hash
 
+        max_val = max(self.hash_map.values())
+        max_keys = [k for k, v in self.hash_map.items() if v == max_val]
+        return min(max_keys)
 
 obj = Solution()
-nums = [1,2,2,3,3,3]
+nums = [1,2,2,2,3,3,3]
 result = obj.mostFrequentElement(nums)
 print(result)
